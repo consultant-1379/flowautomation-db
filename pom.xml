@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--Please Use the latest version of integration pom.xml or the one you want to reference to -->
+    <parent>
+        <groupId>com.ericsson.nms</groupId>
+        <artifactId>integration</artifactId>
+        <version>15.2.0.40</version>
+    </parent>
+
+    <groupId>com.ericsson.idun.poc.services.flowautomation</groupId>
+    <artifactId>flowautomation-db</artifactId>
+    <version>1.24.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>[${project.artifactId}] JEE6 Project</name>
+
+    <properties>
+        <ericsson.scm.url>scm:git:[fetch=]ssh://gerritmirror-ha.lmera.ericsson.se:29418/OSS/com.ericsson.idun.poc.services.flowautomation/flowautomation-db[push=]ssh://gerrit.ericsson.se:29418/OSS/com.ericsson.idun.poc.services.flowautomation/flowautomation-db</ericsson.scm.url>
+    </properties>
+
+    <!--Profiles for site documentation -->
+
+    <!--Profile to deploy latest site -->
+    <profiles>
+        <profile>
+            <id>site_latest</id>
+            <distributionManagement>
+                <site>
+                    <id>site</id>
+                    <name>Site</name>
+                    <url>${site.url}/flowautomation-db/latest</url>
+                </site>
+                <repository>
+                    <id>test1</id>
+                    <name>Test1</name>
+                    <url>${nam.nexus.url}/content/repositories/test1</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+
+        <!--Profile to stage site for review -->
+
+        <profile>
+            <id>site_review</id>
+            <distributionManagement>
+                <site>
+                    <id>site</id>
+                    <name>Site</name>
+                    <url>${site.url}</url>
+                </site>
+                <repository>
+                    <id>test1</id>
+                    <name>Test1</name>
+                    <url>${nam.nexus.url}/content/repositories/test1</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+    <!--Deployment of versioned documentation -->
+    <distributionManagement>
+        <site>
+            <id>site</id>
+            <name>Site</name>
+            <url>${site.url}/flowautomation-db/${project.version}</url>
+        </site>
+        <repository>
+            <id>test1</id>
+            <name>Test1</name>
+            <url>${nam.nexus.url}/content/repositories/test1</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+        <module>ERICflowautomationdb_CXP0006276</module>
+    </modules>
+
+    <scm>
+        <developerConnection>${ericsson.scm.url}</developerConnection>
+        <connection>${ericsson.scm.url}</connection>
+        <tag>HEAD</tag>
+    </scm>
+
+</project>
